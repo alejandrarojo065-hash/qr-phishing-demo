@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Beca Alimenticia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: white;
+      width: 380px;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h1 {
+      color: #0b2347;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #ffcc00;
+      color: #0b2347;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .alerta {
+      margin-top: 15px;
+      display: none;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>🍔 Beca Alimenticia</h1>
+    <p>Registro para los hambreados del Tecnológico</p>
+
+    <input type="text" id="nombre" placeholder="Nombre de prueba">
+    <input type="text" id="carrera" placeholder="Carrera">
+    <select id="semestre">
+      <option>1 semestre</option>
+      <option>2 semestre</option>
+      <option>3 semestre</option>
+      <option>4 semestre</option>
+      <option>5 semestre</option>
+      <option>6 semestre</option>
+    </select>
+    <textarea id="motivo" placeholder="¿Por qué necesitas la beca?"></textarea>
+
+    <button onclick="guardarDatos()">Registrarme</button>
+
+    <p class="alerta" id="alerta">
+      Simulación: en un ataque real, estos datos podrían ser robados.
+    </p>
+  </div>
+
+  <script>
+    function guardarDatos() {
+      const datos = {
+        nombre: document.getElementById("nombre").value,
+        carrera: document.getElementById("carrera").value,
+        semestre: document.getElementById("semestre").value,
+        motivo: document.getElementById("motivo").value
+      };
+
+      let registros = JSON.parse(localStorage.getItem("registros")) || [];
+      registros.push(datos);
+      localStorage.setItem("registros", JSON.stringify(registros));
+
+      document.getElementById("alerta").style.display = "block";
+      alert("Registro enviado correctamente");
+    }
+  </script>
+
+</body>
+</html>
